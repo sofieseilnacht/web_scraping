@@ -43,19 +43,21 @@ Install dependencies with:
 ## How It Works
 
 #### Workflow:
-API Setup: Sets up the OpenAI API key for natural language processing.
-Domain Scraping: Iterates over each domain to extract primary data from the main page and internal links.
-HTML Data Collection: The grab_website_data function fetches HTML content and parses it using BeautifulSoup.
-Internal Link Extraction: find_internal_links finds links within the same domain to gather additional relevant data.
-Data Consolidation: For each domain, extract_with_scrapegraph uses ScrapeGraphAI and OpenAI models to identify and extract specific pieces of information.
-Data Parsing and Filtering: Uses regex to identify and consolidate sentences mentioning founder roles. Filters text data to avoid irrelevant information.
-Output Generation: Outputs the “Products,” “Services,” and “Founder(s)” information for each domain, consolidating the final output for easy reading.
+- API Setup: Sets up the OpenAI API key for natural language processing.
+- Domain Scraping: Iterates over each domain to extract primary data from the main page and internal links.
+- HTML Data Collection: The grab_website_data function fetches HTML content and parses it using BeautifulSoup.
+- Internal Link Extraction: find_internal_links finds links within the same domain to gather additional relevant data.
+- Data Consolidation: For each domain, extract_with_scrapegraph uses ScrapeGraphAI and OpenAI models to identify and extract specific pieces of information.
+- Data Parsing and Filtering: Uses regex to identify and consolidate sentences mentioning founder roles. Filters text data to avoid irrelevant information.
+- Output Generation: Outputs the “Products,” “Services,” and “Founder(s)” information for each domain, consolidating the final output for easy reading.
+
 Functions Overview
-grab_website_data: Retrieves the HTML content from a given URL.
-find_internal_links: Finds all internal links on a page for further data exploration.
-add_text_items: Consolidates textual data while filtering out non-string values.
-extract_founder_sentences: Uses regex to find sentences with founder-related keywords.
-extract_with_scrapegraph: Utilizes ScrapeGraphAI and OpenAI models to extract key information from specified web pages.
+
+- grab_website_data: Retrieves the HTML content from a given URL.
+- find_internal_links: Finds all internal links on a page for further data exploration.
+- add_text_items: Consolidates textual data while filtering out non-string values.
+- extract_founder_sentences: Uses regex to find sentences with founder-related keywords.
+- extract_with_scrapegraph: Utilizes ScrapeGraphAI and OpenAI models to extract key information from specified web pages.
 
 ## Usage
 
@@ -75,6 +77,7 @@ python web_scraping_project.py
 ## Configuration
 
 The configuration section defines the setup for ScrapeGraphAI. Key elements include:
+
 - llm: Uses OpenAI’s GPT model to process and understand web content.
 - verbose: Prints detailed information about the scraping process, aiding in debugging and monitoring. Set to "False" if extra information isn't desired.
 
@@ -82,26 +85,25 @@ The configuration section defines the setup for ScrapeGraphAI. Key elements incl
 
 For each domain, the output is organized as follows:
 
-Final consolidated data for <domain>:
-Products: [List of Products]
-Services: [List of Services]
-Founders: [List of Founder Name(s)]
+            Final consolidated data for <domain>:
+            Products: [List of Products]
+            Services: [List of Services]
+            Founders: [List of Founder Name(s)]
 
 The output is filtered to include only items of sufficient length and relevance, making it concise and structured.
 
 ## Error Handling
 
-Connection Errors: grab_website_data handles HTTP connection errors gracefully.
-ScrapeGraphAI Errors: If data extraction fails, an error message will display without stopping the entire script.
-Data Validation: Checks if returned data is empty and prints an alert if ScrapeGraphAI returns no data.
+- Connection Errors: grab_website_data handles HTTP connection errors gracefully.
+- ScrapeGraphAI Errors: If data extraction fails, an error message will display without stopping the entire script.
+- Data Validation: Checks if returned data is empty and prints an alert if ScrapeGraphAI returns no data.
 
 ## Future Improvements
 
 Potential areas for enhancement include:
-Dynamic Domain List: Adding an option for users to input custom domains dynamically.
-Enhanced Founder Detection: Improving the regex patterns or using NLP techniques for more nuanced sentence analysis.
-Additional Data Types: Extending to extract data such as funding rounds, locations, or company mission statements.
+- Dynamic Domain List: Adding an option for users to input custom domains dynamically.
+- Enhanced Founder Detection: Improving the regex patterns or using NLP techniques for more nuanced sentence analysis.
+- Additional Data Types: Extending to extract data such as funding rounds, locations, or company mission statements.
 
 ## Assessment Written Questions
 
-This project is licensed under the MIT License
