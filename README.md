@@ -5,9 +5,11 @@ This project outputs “Products,” “Services,” and “Founder(s)” data f
 ## Project Overview
 
 The purpose of this script is to automatically scrape structured information about each company's offerings (products/services) and founder details from their website. Specifically, we target and extract:
-Products: Unique products offered by the company
-Services: Services provided by the company
-Founder(s): Names of the Founders
+
+- Products: Unique products offered by the company
+- Services: Services provided by the company
+- Founder(s): Names of the Founders
+
 The code uses a combination of web scraping techniques (with BeautifulSoup), intelligent parsing (ScrapeGraphAI and OpenAI), and regex-based text extraction to create structured data outputs into the console.
 
 ## Table of Contents
@@ -104,6 +106,26 @@ Potential areas for enhancement include:
 - Dynamic Domain List: Adding an option for users to input custom domains dynamically.
 - Enhanced Founder Detection: Improving the regex patterns or using NLP techniques for more nuanced sentence analysis.
 - Additional Data Types: Extending to extract data such as funding rounds, locations, or company mission statements.
+
+In particular, the following could be improved to further streamline and clean up our script outputs:
+
+1. Distinguishing Products from Services:
+
+To improve the accuracy of our data categorization, we plan to implement AI-driven filtering to distinguish between "products" and "services" in the output more effectively. Currently, some product and service names are duplicated or miscategorized, leading to confusion in the output. We propose using spaCy for this task, leveraging its Named Entity Recognition (NER) capabilities to classify items based on keywords and context clues. Specifically, we can use the following prompts to guide spaCy’s filtering:
+
+    - Products Prompt: “List only physical or digital products, excluding any consulting or support actions.” 
+
+    Products typically include terms like “software,” “tool,” “app,” or “platform,” which spaCy can use as indicators.
+
+    - Services Prompt: “List only actions or support offerings, excluding any tangible or digital items.”
+    
+    Services usually include terms like “consulting,” “monitoring,” “support,” or “management,” which will help spaCy identify them correctly.
+
+By using these prompts and spaCy’s NER model, we can create a robust system for classifying items, removing duplicates, and ensuring that only unique values are included in each category.
+
+2. Validation of Key Data (e.g., Founder Names):
+
+For further data validation, particularly for key personnel like founders, we plan to use a second AI-driven approach. Here, spaCy or a similar tool could automate verification by searching the internet for specific queries, such as “company name/domain name” + “Founder.” By retrieving and parsing search results, spaCy can identify relevant names and titles, which we can then compare with our dataset to verify accuracy. A text similarity metric (such as cosine similarity on text embeddings) can be applied to ensure high confidence in matching names. This process will allow for automated, reliable validation of sensitive information.
 
 ## Assessment Written Questions
 
